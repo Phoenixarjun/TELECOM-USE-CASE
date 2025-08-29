@@ -1,0 +1,67 @@
+{
+    "checksum": "893b780d41463467d1692cad089617f4497cd3e3b4cfcfc4b2c81de4dfa68321",
+    "data": {
+    "id": "5f11e299-10e6-4c18-91a0-8f304ba1bee5",
+    "createdAt": 1756482239609,
+    "updatedAt": 1756482267859,
+    "title": " Generate tests for AuthServiceImpl class",
+    "messages": [
+        {
+            "id": "c4b7410a-7e14-4c14-b7c0-d673f88c5d93",
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": " Generate tests for AuthServiceImpl class"
+                }
+            ],
+            "context": {
+                "currentFile": {
+                    "path": "C:\\Users\\naresh.b\\Downloads\\Java\\Collections\\Telecom Use Case\\src\\service\\AuthServiceImpl.java",
+                    "fsPath": "C:/Users/naresh.b/Downloads/Java/Collections/Telecom Use Case/src/service/AuthServiceImpl.java",
+                    "content": "package service;\n\nimport model.Customer;\nimport repo.CustomerRepo;\nimport exceptions.InvalidCredentialsException;\nimport exceptions.InvalidCustomerException;\nimport java.time.LocalDate;\nimport java.util.UUID;\n\npublic class AuthServiceImpl implements AuthService {\n    private final CustomerRepo customerRepo;\n\n    public AuthServiceImpl(CustomerRepo customerRepo) {\n        this.customerRepo = customerRepo;\n    }\n\n    @Override\n    public Customer login(String email, String password) throws InvalidCredentialsException {\n        if (email == null || email.isBlank() || password == null || password.isBlank()) {\n            throw new InvalidCredentialsException(\"Email and password cannot be empty\");\n        }\n        Customer customer = customerRepo.findByEmail(email);\n        if (customer == null || !password.equals(customer.getPassword())) {\n            throw new InvalidCredentialsException(\"Invalid email or password\");\n        }\n        return customer;\n    }\n\n    @Override\n    public Customer register(String name, String email, String password) throws InvalidCustomerException {\n        if (name == null || name.isBlank()) {\n            throw new InvalidCustomerException(\"Name cannot be empty\");\n        }\n        if (email == null || email.isBlank()) {\n            throw new InvalidCustomerException(\"Email cannot be empty\");\n        }\n        if (password == null || password.isBlank()) {\n            throw new InvalidCustomerException(\"Password cannot be empty\");\n        }\n        if (customerRepo.findByEmail(email) != null) {\n            throw new InvalidCustomerException(\"Email already registered: \" + email);\n        }\n        Customer customer = new Customer(UUID.randomUUID(), name, email, password, null, false, LocalDate.now(), \"customer\");\n        return customerRepo.save(customer);\n    }\n}",
+                    "language": "java"
+                },
+                "codebaseEnabled": true
+            },
+            "createdAt": 1756482239687,
+            "isInternal": false,
+            "rawContent": {
+                "type": "doc",
+                "content": [
+                    {
+                        "type": "paragraph",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": " Generate tests for AuthServiceImpl class"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "autoAppliedRules": []
+        },
+        {
+            "id": "1b2b0a9f-cf06-48cc-9111-e435c5c6cf39",
+            "role": "system",
+            "content": [
+                {
+                    "type": "errorText",
+                    "text": "Could not establish websocket connection. Please try again later.",
+                    "actions": [
+                        {
+                            "type": "externalAction",
+                            "title": "Regenerate",
+                            "action": "regenerateLastAnswer"
+                        }
+                    ]
+                }
+            ],
+            "createdAt": 1756482267858,
+            "isInternal": false
+        }
+    ],
+    "isUnitTestsAgent": true
+}
+}

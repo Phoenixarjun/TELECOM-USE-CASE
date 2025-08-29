@@ -4,13 +4,13 @@ import model.Subscription;
 import model.UsageRecord;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 public class UsageRecordRepo {
-    private final ConcurrentHashMap<UUID, UsageRecord> storage = new ConcurrentHashMap<>();
+    private final HashMap<UUID, UsageRecord> storage = new HashMap<>();
 
     public UsageRecordRepo(SubscriptionRepo subscriptionRepo) {
         List<Subscription> subs = subscriptionRepo.findAll();

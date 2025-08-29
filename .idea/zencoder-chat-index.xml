@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ai.zencoder.plugin.chat.index">
+    <option name="chatMetadata" value="{&quot;5f11e299-10e6-4c18-91a0-8f304ba1bee5&quot;:{&quot;id&quot;:&quot;5f11e299-10e6-4c18-91a0-8f304ba1bee5&quot;,&quot;title&quot;:&quot; Generate tests for AuthServiceImpl class&quot;,&quot;createdAt&quot;:1756482239609,&quot;updatedAt&quot;:1756482267859,&quot;isUnitTestsAgent&quot;:true,&quot;messageCount&quot;:2,&quot;lastMessagePreview&quot;:&quot;Could not establish websocket connection. Please try again later.&quot;}}" />
+  </component>
+</project>

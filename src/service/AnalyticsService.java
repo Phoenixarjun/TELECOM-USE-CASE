@@ -1,4 +1,4 @@
 package service;
 
-public class AnalyticsService {
+public interface AnalyticsService {
 }

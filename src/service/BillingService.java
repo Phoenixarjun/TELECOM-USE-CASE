@@ -1,4 +1,4 @@
 package service;
 
-public class BillingService {
+public interface BillingService {
 }
