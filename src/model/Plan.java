@@ -15,7 +15,7 @@ public class Plan {
     private boolean weekendFreeVoice;
     private double familyShareCap;
 
-    public  Plan() {}
+    public Plan() {}
 
     public Plan(UUID id, String name, double monthlyRental, double dataAllowanceGb, int voiceAllowanceMinutes,
                 int smsAllowance, double overageRateData, double overageRateVoice, double overageRateSms,

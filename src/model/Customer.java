@@ -8,6 +8,7 @@ public class Customer {
     private String name;
     private String email;
     private String password;
+    private String phoneNumber;
     private UUID referredBy;
     private boolean creditBlocked;
     private LocalDate joinDate;
@@ -15,11 +16,12 @@ public class Customer {
 
     public Customer() { }
 
-    public Customer(UUID id, String name, String email, String password, UUID referredBy, boolean creditBlocked, LocalDate joinDate, String role) {
+    public Customer(UUID id, String name, String email, String password, String phoneNumber, UUID referredBy, boolean creditBlocked, LocalDate joinDate, String role) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.phoneNumber = phoneNumber;
         this.referredBy = referredBy;
         this.creditBlocked = creditBlocked;
         this.joinDate = joinDate != null ? joinDate : LocalDate.now();
@@ -56,6 +58,14 @@ public class Customer {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public UUID getReferredBy() {
@@ -97,6 +107,7 @@ public class Customer {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='[hidden]'" +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 ", referredBy=" + referredBy +
                 ", creditBlocked=" + creditBlocked +
                 ", joinDate=" + joinDate +

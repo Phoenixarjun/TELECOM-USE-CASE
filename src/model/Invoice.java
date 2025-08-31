@@ -32,7 +32,6 @@ public class Invoice {
         this.paid = paid;
     }
 
-
     public UUID getId() {
         return id;
     }
@@ -120,6 +119,7 @@ public class Invoice {
     public void setPaid(boolean paid) {
         this.paid = paid;
     }
+
     @Override
     public String toString() {
         return "Invoice{" +
@@ -136,5 +136,4 @@ public class Invoice {
                 ", paid=" + paid +
                 '}';
     }
-
 }

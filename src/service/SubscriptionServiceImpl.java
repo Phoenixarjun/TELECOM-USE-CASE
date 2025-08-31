@@ -28,17 +28,17 @@ public class SubscriptionServiceImpl implements SubscriptionService{
     }
 
     @Override
-    public Subscription choosePlan(String role, UUID customerId, UUID planId) {
-        Customer customer = customerRepo.findById(customerId);
+    public Subscription choosePlan(String role, String phoneNumber, UUID planId) {
+        Customer customer = customerRepo.findByPhoneNumber(phoneNumber);
         Plan plan = planRepo.findById(planId);
         if(customer == null){
-            throw new InvalidCustomerException("Customer not found: " + customerId);
+            throw new InvalidCustomerException("Customer not found with phone number: " + phoneNumber);
         }
         if(plan == null){
-            throw new IllegalArgumentException("Plan not found: " + planId);
+            throw new InvalidPlanException("Plan not found: " + planId);
         }
 
-        Subscription subscription = new Subscription(UUID.randomUUID(), customerId, plan.getId(), LocalDate.now(), null, null, false);
+        Subscription subscription = new Subscription(UUID.randomUUID(), customer.getId(), plan.getId(), LocalDate.now(), null, null, false);
         return  subscriptionRepo.save(subscription);
     }
 
@@ -106,11 +106,11 @@ public class SubscriptionServiceImpl implements SubscriptionService{
     }
 
     @Override
-    public List<Subscription> getSubscriptionsByCustomer(UUID customerId) {
-        Customer customer = customerRepo.findById(customerId);
+    public List<Subscription> getSubscriptionsByCustomer(String phoneNumber) {
+        Customer customer = customerRepo.findByPhoneNumber(phoneNumber);
         if (customer == null) {
-            throw new InvalidCustomerException("Customer not found: " + customerId);
+            throw new InvalidCustomerException("Customer not found with phone number: " + phoneNumber);
         }
-        return subscriptionRepo.findByCustomerId(customerId);
+        return subscriptionRepo.findByCustomerId(customer.getId());
     }
 }
