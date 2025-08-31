@@ -3,13 +3,31 @@ package service;
 public class BillingServiceImpl implements BillingService{
    @Override
     public Invoice generateInvoice(String role, UUID subscriptionId, YearMonth month, List<UsageRecord> usageRecords) {
-        // 1. Fetch subscription & plan
-        Subscription subscription = subscriptionRepo.findById(subscriptionId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid subscription"));
-        Plan plan = planRepo.findById(subscription.planId())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid plan"));
-        Customer customer = customerRepo.findById(subscription.customerId())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid customer"));
+    Subscription subscription = null;
+    Plan plan = null;
+    Customer customer = null;
+
+    try {
+        subscription = subscriptionRepo.findById(subscriptionId).get();
+    } catch (Exception e) {
+        System.out.println("Error: Invalid subscription");
+        throw new IllegalArgumentException("Invalid subscription");
+    }
+
+    try {
+        plan = planRepo.findById(subscription.planId()).get();
+    } catch (Exception e) {
+        System.out.println("Error: Invalid plan");
+        throw new IllegalArgumentException("Invalid plan");
+    }
+
+    try {
+        customer = customerRepo.findById(subscription.customerId()).get();
+    } catch (Exception e) {
+        System.out.println("Error: Invalid customer");
+        throw new IllegalArgumentException("Invalid customer");
+    }
+
 
         double baseRental = plan.monthlyRental();
         double taxRate = 0.18;
